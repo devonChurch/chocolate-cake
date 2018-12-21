@@ -1,0 +1,27 @@
+{
+  "name": "chocolate-cake",
+  "version": "1.0.0",
+  "description": "A helper for converting Numbers into their String representation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devonChurch/chocolate-cake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devonChurch/chocolate-cake/issues"
+  },
+  "homepage": "https://github.com/devonChurch/chocolate-cake#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.2.2",
+    "webpack": "^4.28.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
