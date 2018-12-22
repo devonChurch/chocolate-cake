@@ -1,5 +1,20 @@
-import convert from "./index";
+import chocolateCake from "./index";
 
-test("returns supplid value", () => {
-  expect(convert(5)).toBe(5);
+describe("single values", () => {
+  [
+    [0, "zero"],
+    [1, "one"],
+    [2, "two"],
+    [3, "three"],
+    [4, "four"],
+    [5, "five"],
+    [6, "six"],
+    [7, "seven"],
+    [8, "eight"],
+    [9, "nine"]
+  ].forEach(([number, text]) => {
+    test(`returns ${text} from ${number}`, () => {
+      expect(chocolateCake(number)).toBe(text);
+    });
+  });
 });
