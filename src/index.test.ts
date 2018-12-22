@@ -6,7 +6,7 @@ const createTest = ([number, text]) => {
   });
 };
 
-describe("single values", () => {
+describe("single digit values", () => {
   [
     [0, "zero"],
     [1, "one"],
@@ -34,5 +34,26 @@ describe("teen values", () => {
     [17, "seventeen"],
     [18, "eighteen"],
     [19, "nineteen"]
+  ].forEach(createTest);
+});
+
+describe("standard double digit values", () => {
+  [
+    [20, "twenty"],
+    [29, "twenty nine"],
+    [30, "thirty"],
+    [39, "thirty nine"],
+    [49, "forty nine"],
+    [40, "forty"],
+    [50, "fifty"],
+    [59, "fifty nine"],
+    [60, "sixty"],
+    [69, "sixty nine"],
+    [70, "seventy"],
+    [79, "seventy nine"],
+    [80, "eighty"],
+    [89, "eighty nine"],
+    [90, "ninety"],
+    [99, "ninety nine"]
   ].forEach(createTest);
 });
