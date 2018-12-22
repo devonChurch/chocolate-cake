@@ -24,3 +24,15 @@ describe("single values", () => {
 describe("outlier values", () => {
   [[10, "ten"], [11, "eleven"], [12, "twelve"]].forEach(createTest);
 });
+
+describe("teen values", () => {
+  [
+    [13, "thirteen"],
+    [14, "fourteen"],
+    [15, "fifteen"],
+    [16, "sixteen"],
+    [17, "seventeen"],
+    [18, "eighteen"],
+    [19, "nineteen"]
+  ].forEach(createTest);
+});
