@@ -1,5 +1,11 @@
 import chocolateCake from "./index";
 
+const createTest = ([number, text]) => {
+  test(`returns ${text} from ${number}`, () => {
+    expect(chocolateCake(number)).toBe(text);
+  });
+};
+
 describe("single values", () => {
   [
     [0, "zero"],
@@ -12,9 +18,9 @@ describe("single values", () => {
     [7, "seven"],
     [8, "eight"],
     [9, "nine"]
-  ].forEach(([number, text]) => {
-    test(`returns ${text} from ${number}`, () => {
-      expect(chocolateCake(number)).toBe(text);
-    });
-  });
+  ].forEach(createTest);
+});
+
+describe("outlier values", () => {
+  [[10, "ten"], [11, "eleven"], [12, "twelve"]].forEach(createTest);
 });

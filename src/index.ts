@@ -11,8 +11,19 @@ const singleMap = {
   9: "nine"
 };
 
+const outlierMap = {
+  10: "ten",
+  11: "eleven",
+  12: "twelve"
+};
+
+const staticMap = {
+  ...singleMap,
+  ...outlierMap
+};
+
 const chocolateCake = value => {
-  return singleMap[value];
+  return staticMap[value];
 };
 
 export default chocolateCake;
