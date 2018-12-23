@@ -58,9 +58,13 @@ const createDoubleAndUnder = value => {
   return `${prefixText}${suffixText}`;
 };
 
+const conditionallyRecurse = value =>
+  value < 100 ? createDoubleAndUnder(value) : recurseValue(value);
+
 const incrementMap = {
-  10: value => `and ${createDoubleAndUnder(value)}`,
-  100: value => `${createDoubleAndUnder(value)} hundred`
+  10: value => `and ${conditionallyRecurse(value)}`,
+  100: value => `${conditionallyRecurse(value)} hundred`,
+  1000: value => `${conditionallyRecurse(value)} thousand`
   // Higher increments must recurse?
 };
 
