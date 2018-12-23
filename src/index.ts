@@ -61,25 +61,37 @@ const createDoubleAndUnder = value => {
 const conditionallyRecurse = value =>
   value < 100 ? createDoubleAndUnder(value) : recurseValue(value);
 
-const incrementMap = {
-  10: value => `and ${conditionallyRecurse(value)}`,
-  100: value => `${conditionallyRecurse(value)} hundred`,
-  1000: value => `${conditionallyRecurse(value)} thousand`
-  // Higher increments must recurse?
-};
+const createIncrementKey = zeros => `1${new Array(zeros).fill(0).join("")}`;
+
+const incrementMap = [
+  [1, ""],
+  [2, " hundred"],
+  [3, " thousand,"],
+  [6, " million,"],
+  [9, " billion,"],
+  [12, " trillion,"],
+  [15, " quadrillion,"],
+  [18, " quintillion,"]
+].reduce(
+  (acc, [zeros, suffix]) => ({
+    ...acc,
+    [createIncrementKey(zeros)]: value =>
+      `${conditionallyRecurse(value)}${suffix}`
+  }),
+  {}
+);
 
 const incrementCheck = Object.entries(incrementMap).sort(
   ([incrementA], [incrementB]) => (incrementA < incrementB ? 1 : -1)
 );
 
 const queryValue = ({ text, number, increment, append }) => {
-  debugger;
-
   const isZero = number === 0;
   if (isZero) return { text, number: 0 };
 
   const isFinalRecurse = increment === 10;
-  if (isFinalRecurse) return { text: `${text} ${append(number)}`, number: 0 };
+  if (isFinalRecurse)
+    return { text: `${text} and ${append(number)}`, number: 0 };
 
   const isTooSmall = increment > number;
   if (isTooSmall) return { text, number };
@@ -92,7 +104,20 @@ const queryValue = ({ text, number, increment, append }) => {
   return { text: `${text} ${append(numberNow)}`, number: numberNext };
 };
 
-const recurseValue = value => {
+const sanitiseText = (text: string): string => {
+  const replacedText = text
+    .replace(/^\s*/g, "")
+    .replace(/^(and)(\s*)/g, "")
+    .replace(/, and/g, " and")
+    .replace(/(,*|\s*)$/g, "")
+    .replace(/\s\s(\s*)?/g, " ");
+  const capital = replacedText.slice(0, 1).toUpperCase();
+  const remaining = replacedText.slice(1);
+
+  return `${capital}${remaining}`;
+};
+
+const recurseValue = (value: number): string => {
   const shell = { text: "", number: value };
   const { text } = incrementCheck.reduce(
     (acc, [increment, append]) =>
@@ -100,9 +125,13 @@ const recurseValue = value => {
     shell
   );
 
-  return text.replace(/^\s*/, "").replace(/^(and)(\s*)/, "");
+  return text;
 };
 
-const chocolateCake = value => (value ? recurseValue(value) : staticMap[value]);
+const chocolateCake = (value: number): string => {
+  const text = value ? recurseValue(value) : staticMap[0];
+
+  return sanitiseText(text);
+};
 
 export default chocolateCake;

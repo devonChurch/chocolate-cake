@@ -8,204 +8,254 @@ const createTest = ([number, text]) => {
 
 describe("single digit values", () => {
   [
-    [0, "zero"],
-    [1, "one"],
-    [2, "two"],
-    [3, "three"],
-    [4, "four"],
-    [5, "five"],
-    [6, "six"],
-    [7, "seven"],
-    [8, "eight"],
-    [9, "nine"]
+    [0, "Zero"],
+    [1, "One"],
+    [2, "Two"],
+    [3, "Three"],
+    [4, "Four"],
+    [5, "Five"],
+    [6, "Six"],
+    [7, "Seven"],
+    [8, "Eight"],
+    [9, "Nine"]
   ].forEach(createTest);
 });
 
 describe("outlier values", () => {
-  [[10, "ten"], [11, "eleven"], [12, "twelve"]].forEach(createTest);
+  // prettier-ignore
+  [
+    [10, "Ten"],
+    [11, "Eleven"],
+    [12, "Twelve"]
+  ].forEach(createTest);
 });
 
 describe("teen values", () => {
   [
-    [13, "thirteen"],
-    [14, "fourteen"],
-    [15, "fifteen"],
-    [16, "sixteen"],
-    [17, "seventeen"],
-    [18, "eighteen"],
-    [19, "nineteen"]
+    [13, "Thirteen"],
+    [14, "Fourteen"],
+    [15, "Fifteen"],
+    [16, "Sixteen"],
+    [17, "Seventeen"],
+    [18, "Eighteen"],
+    [19, "Nineteen"]
   ].forEach(createTest);
 });
 
 describe("standard double digit values", () => {
   [
-    [20, "twenty"],
-    [29, "twenty nine"],
-    [30, "thirty"],
-    [39, "thirty nine"],
-    [49, "forty nine"],
-    [40, "forty"],
-    [50, "fifty"],
-    [59, "fifty nine"],
-    [60, "sixty"],
-    [69, "sixty nine"],
-    [70, "seventy"],
-    [79, "seventy nine"],
-    [80, "eighty"],
-    [89, "eighty nine"],
-    [90, "ninety"],
-    [99, "ninety nine"]
+    [20, "Twenty"],
+    [29, "Twenty nine"],
+    [30, "Thirty"],
+    [39, "Thirty nine"],
+    [49, "Forty nine"],
+    [40, "Forty"],
+    [50, "Fifty"],
+    [59, "Fifty nine"],
+    [60, "Sixty"],
+    [69, "Sixty nine"],
+    [70, "Seventy"],
+    [79, "Seventy nine"],
+    [80, "Eighty"],
+    [89, "Eighty nine"],
+    [90, "Ninety"],
+    [99, "Ninety nine"]
   ].forEach(createTest);
 });
 
-describe("one hundred suffix values", () => {
+describe("hundred suffix values", () => {
   [
-    [100, "one hundred"],
-    [101, "one hundred and one"],
-    [111, "one hundred and eleven"],
+    [100, "One hundred"],
+    [101, "One hundred and one"],
+    [111, "One hundred and eleven"],
     //
-    [200, "two hundred"],
-    [202, "two hundred and two"],
-    [222, "two hundred and twenty two"],
+    [200, "Two hundred"],
+    [202, "Two hundred and two"],
+    [222, "Two hundred and twenty two"],
     //
-    [300, "three hundred"],
-    [303, "three hundred and three"],
-    [333, "three hundred and thirty three"],
+    [300, "Three hundred"],
+    [303, "Three hundred and three"],
+    [333, "Three hundred and thirty three"],
     //
-    [400, "four hundred"],
-    [404, "four hundred and four"],
-    [444, "four hundred and forty four"],
+    [400, "Four hundred"],
+    [404, "Four hundred and four"],
+    [444, "Four hundred and forty four"],
     //
-    [500, "five hundred"],
-    [505, "five hundred and five"],
-    [555, "five hundred and fifty five"],
+    [500, "Five hundred"],
+    [505, "Five hundred and five"],
+    [555, "Five hundred and fifty five"],
     //
-    [600, "six hundred"],
-    [606, "six hundred and six"],
-    [666, "six hundred and sixty six"],
+    [600, "Six hundred"],
+    [606, "Six hundred and six"],
+    [666, "Six hundred and sixty six"],
     //
-    [700, "seven hundred"],
-    [707, "seven hundred and seven"],
-    [777, "seven hundred and seventy seven"],
+    [700, "Seven hundred"],
+    [707, "Seven hundred and seven"],
+    [777, "Seven hundred and seventy seven"],
     //
-    [800, "eight hundred"],
-    [808, "eight hundred and eight"],
-    [888, "eight hundred and eighty eight"],
+    [800, "Eight hundred"],
+    [808, "Eight hundred and eight"],
+    [888, "Eight hundred and eighty eight"],
     //
-    [900, "nine hundred"],
-    [909, "nine hundred and nine"],
-    [999, "nine hundred and ninety nine"]
+    [900, "Nine hundred"],
+    [909, "Nine hundred and nine"],
+    [999, "Nine hundred and ninety nine"]
   ].forEach(createTest);
 });
 
-describe("one thousand suffix values", () => {
+describe("thousand suffix values", () => {
   [
-    [1000, "one thousand"],
-    [10000, "ten thousand"],
-    [100000, "one hundred thousand"],
+    [1000, "One thousand"],
+    [10000, "Ten thousand"],
+    [100000, "One hundred thousand"],
     //
-    [1001, "one thousand and one"],
-    [10011, "ten thousand and eleven"],
-    [100111, "one hundred thousand one hundred and eleven"],
+    [1001, "One thousand and one"],
+    [10011, "Ten thousand and eleven"],
+    [100111, "One hundred thousand, one hundred and eleven"],
     //
-    [1100, "one thousand one hundred"],
-    [11100, "eleven thousand one hundred"],
-    [111100, "one hundred and eleven thousand one hundred"],
+    [1100, "One thousand, one hundred"],
+    [11100, "Eleven thousand, one hundred"],
+    [111100, "One hundred and eleven thousand, one hundred"],
     /* - - - - - - - - - - - */
-    [2000, "two thousand"],
-    [20000, "twenty thousand"],
-    [200000, "two hundred thousand"],
+    [2000, "Two thousand"],
+    [20000, "Twenty thousand"],
+    [200000, "Two hundred thousand"],
     //
-    [2002, "two thousand and two"],
-    [20022, "twenty thousand and twenty two"],
-    [200222, "two hundred thousand two hundred and twenty two"],
+    [2002, "Two thousand and two"],
+    [20022, "Twenty thousand and twenty two"],
+    [200222, "Two hundred thousand, two hundred and twenty two"],
     //
-    [2200, "two thousand two hundred"],
-    [22200, "twenty two thousand two hundred"],
-    [222200, "two hundred and twenty two thousand two hundred"],
+    [2200, "Two thousand, two hundred"],
+    [22200, "Twenty two thousand, two hundred"],
+    [222200, "Two hundred and twenty two thousand, two hundred"],
     /* - - - - - - - - - - - */
-    [3000, "three thousand"],
-    [30000, "thirty thousand"],
-    [300000, "three hundred thousand"],
+    [3000, "Three thousand"],
+    [30000, "Thirty thousand"],
+    [300000, "Three hundred thousand"],
     //
-    [3003, "three thousand and three"],
-    [30033, "thirty thousand and thirty three"],
-    [300333, "three hundred thousand three hundred and thirty three"],
+    [3003, "Three thousand and three"],
+    [30033, "Thirty thousand and thirty three"],
+    [300333, "Three hundred thousand, three hundred and thirty three"],
     //
-    [3300, "three thousand three hundred"],
-    [33300, "thirty three thousand three hundred"],
-    [333300, "three hundred and thirty three thousand three hundred"],
+    [3300, "Three thousand, three hundred"],
+    [33300, "Thirty three thousand, three hundred"],
+    [333300, "Three hundred and thirty three thousand, three hundred"],
     /* - - - - - - - - - - - */
-    [4000, "four thousand"],
-    [40000, "forty thousand"],
-    [400000, "four hundred thousand"],
+    [4000, "Four thousand"],
+    [40000, "Forty thousand"],
+    [400000, "Four hundred thousand"],
     //
-    [4004, "four thousand and four"],
-    [40044, "forty thousand and forty four"],
-    [400444, "four hundred thousand four hundred and forty four"],
+    [4004, "Four thousand and four"],
+    [40044, "Forty thousand and forty four"],
+    [400444, "Four hundred thousand, four hundred and forty four"],
     //
-    [4400, "four thousand four hundred"],
-    [44400, "forty four thousand four hundred"],
-    [444400, "four hundred and forty four thousand four hundred"],
+    [4400, "Four thousand, four hundred"],
+    [44400, "Forty four thousand, four hundred"],
+    [444400, "Four hundred and forty four thousand, four hundred"],
     /* - - - - - - - - - - - */
-    [5000, "five thousand"],
-    [50000, "fifty thousand"],
-    [500000, "five hundred thousand"],
+    [5000, "Five thousand"],
+    [50000, "Fifty thousand"],
+    [500000, "Five hundred thousand"],
     //
-    [5005, "five thousand and five"],
-    [50055, "fifty thousand and fifty five"],
-    [500555, "five hundred thousand five hundred and fifty five"],
+    [5005, "Five thousand and five"],
+    [50055, "Fifty thousand and fifty five"],
+    [500555, "Five hundred thousand, five hundred and fifty five"],
     //
-    [5500, "five thousand five hundred"],
-    [55500, "fifty five thousand five hundred"],
-    [555500, "five hundred and fifty five thousand five hundred"],
+    [5500, "Five thousand, five hundred"],
+    [55500, "Fifty five thousand, five hundred"],
+    [555500, "Five hundred and fifty five thousand, five hundred"],
     /* - - - - - - - - - - - */
-    [6000, "six thousand"],
-    [60000, "sixty thousand"],
-    [600000, "six hundred thousand"],
+    [6000, "Six thousand"],
+    [60000, "Sixty thousand"],
+    [600000, "Six hundred thousand"],
     //
-    [6006, "six thousand and six"],
-    [60066, "sixty thousand and sixty six"],
-    [600666, "six hundred thousand six hundred and sixty six"],
+    [6006, "Six thousand and six"],
+    [60066, "Sixty thousand and sixty six"],
+    [600666, "Six hundred thousand, six hundred and sixty six"],
     //
-    [6600, "six thousand six hundred"],
-    [66600, "sixty six thousand six hundred"],
-    [666600, "six hundred and sixty six thousand six hundred"],
+    [6600, "Six thousand, six hundred"],
+    [66600, "Sixty six thousand, six hundred"],
+    [666600, "Six hundred and sixty six thousand, six hundred"],
     /* - - - - - - - - - - - */
-    [7000, "seven thousand"],
-    [70000, "seventy thousand"],
-    [700000, "seven hundred thousand"],
+    [7000, "Seven thousand"],
+    [70000, "Seventy thousand"],
+    [700000, "Seven hundred thousand"],
     //
-    [7007, "seven thousand and seven"],
-    [70077, "seventy thousand and seventy seven"],
-    [700777, "seven hundred thousand seven hundred and seventy seven"],
+    [7007, "Seven thousand and seven"],
+    [70077, "Seventy thousand and seventy seven"],
+    [700777, "Seven hundred thousand, seven hundred and seventy seven"],
     //
-    [7700, "seven thousand seven hundred"],
-    [77700, "seventy seven thousand seven hundred"],
-    [777700, "seven hundred and seventy seven thousand seven hundred"],
+    [7700, "Seven thousand, seven hundred"],
+    [77700, "Seventy seven thousand, seven hundred"],
+    [777700, "Seven hundred and seventy seven thousand, seven hundred"],
     /* - - - - - - - - - - - */
-    [8000, "eight thousand"],
-    [80000, "eighty thousand"],
-    [800000, "eight hundred thousand"],
+    [8000, "Eight thousand"],
+    [80000, "Eighty thousand"],
+    [800000, "Eight hundred thousand"],
     //
-    [8008, "eight thousand and eight"],
-    [80088, "eighty thousand and eighty eight"],
-    [800888, "eight hundred thousand eight hundred and eighty eight"],
+    [8008, "Eight thousand and eight"],
+    [80088, "Eighty thousand and eighty eight"],
+    [800888, "Eight hundred thousand, eight hundred and eighty eight"],
     //
-    [8800, "eight thousand eight hundred"],
-    [88800, "eighty eight thousand eight hundred"],
-    [888800, "eight hundred and eighty eight thousand eight hundred"],
+    [8800, "Eight thousand, eight hundred"],
+    [88800, "Eighty eight thousand, eight hundred"],
+    [888800, "Eight hundred and eighty eight thousand, eight hundred"],
     /* - - - - - - - - - - - */
-    [9000, "nine thousand"],
-    [90000, "ninety thousand"],
-    [900000, "nine hundred thousand"],
+    [9000, "Nine thousand"],
+    [90000, "Ninety thousand"],
+    [900000, "Nine hundred thousand"],
     //
-    [9009, "nine thousand and nine"],
-    [90099, "ninety thousand and ninety nine"],
-    [900999, "nine hundred thousand nine hundred and ninety nine"],
+    [9009, "Nine thousand and nine"],
+    [90099, "Ninety thousand and ninety nine"],
+    [900999, "Nine hundred thousand, nine hundred and ninety nine"],
     //
-    [9900, "nine thousand nine hundred"],
-    [99900, "ninety nine thousand nine hundred"],
-    [999900, "nine hundred and ninety nine thousand nine hundred"]
+    [9900, "Nine thousand, nine hundred"],
+    [99900, "Ninety nine thousand, nine hundred"],
+    [999900, "Nine hundred and ninety nine thousand, nine hundred"]
+  ].forEach(createTest);
+});
+
+describe("million suffix values", () => {
+  // prettier-ignore
+  [
+    [1234567, "One million, two hundred and thirty four thousand, five hundred and sixty seven"],
+    [12345678, "Twelve million, three hundred and forty five thousand, six hundred and seventy eight"],
+    [123456789, "One hundred and twenty three million, four hundred and fifty six thousand, seven hundred and eighty nine"]
+  ].forEach(createTest);
+});
+
+describe("billion suffix values", () => {
+  // prettier-ignore
+  [
+    [1234567890, "One billion, two hundred and thirty four million, five hundred and sixty seven thousand, eight hundred and ninety"],
+    [12345678901, "Twelve billion, three hundred and forty five million, six hundred and seventy eight thousand, nine hundred and one"],
+    [123456789012, "One hundred and twenty three billion, four hundred and fifty six million, seven hundred and eighty nine thousand and twelve"],
+  ].forEach(createTest);
+});
+
+describe("trillion suffix values", () => {
+  // prettier-ignore
+  [
+    [1234567890123, "One trillion, two hundred and thirty four billion, five hundred and sixty seven million, eight hundred and ninety thousand, one hundred and twenty three"],
+    [12345678901234, "Twelve trillion, three hundred and forty five billion, six hundred and seventy eight million, nine hundred and one thousand, two hundred and thirty four"],
+    [123456789012345, "One hundred and twenty three trillion, four hundred and fifty six billion, seven hundred and eighty nine million, twelve thousand, three hundred and forty five"],
+  ].forEach(createTest);
+});
+
+describe("quadrillion suffix values", () => {
+  // prettier-ignore
+  [
+    [1234567890123456, "One quadrillion, two hundred and thirty four trillion, five hundred and sixty seven billion, eight hundred and ninety million, one hundred and twenty three thousand, four hundred and fifty six"],
+    [12345678901234567, "Twelve quadrillion, three hundred and forty five trillion, six hundred and seventy eight billion, nine hundred and one million, two hundred and thirty four thousand, five hundred and sixty eight"],
+    [123456789012345678, "One hundred and twenty three quadrillion, four hundred and fifty six trillion, seven hundred and eighty nine billion, twelve million, three hundred and forty five thousand, six hundred and eighty"],
+  ].forEach(createTest);
+});
+
+describe("quintillion suffix values", () => {
+  // prettier-ignore
+  [
+    [1234567890123456789, "One quintillion, two hundred and thirty four quadrillion, five hundred and sixty seven trillion, eight hundred and ninety billion, one hundred and twenty three million, four hundred and fifty six thousand, seven hundred and sixty eight"],
+    [12345678901234567890, "Twelve quintillion, three hundred and forty five quadrillion, six hundred and seventy eight trillion, nine hundred and one billion, two hundred and thirty four million, five hundred and sixty seven thousand, one hundred and sixty eight"],
+    [123456789012345678901, "One hundred and twenty three quintillion, four hundred and fifty six quadrillion, seven hundred and eighty nine trillion, twelve billion, three hundred and forty five million, six hundred and eighty three thousand, nine hundred and sixty eight"],
   ].forEach(createTest);
 });
