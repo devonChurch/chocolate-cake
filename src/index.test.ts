@@ -1,25 +1,28 @@
 import chocolateCake from "./index";
 
-const createTest = ([number, text]) => {
-  test(`returns ${text} from ${number}`, () => {
-    expect(chocolateCake(number)).toBe(text);
+type TestItem = [number, string];
+type TestItems = TestItem[];
+
+const createTest = ([value, text]: TestItem, index: number): void => {
+  test(`returns ${text} from ${value}`, () => {
+    expect(chocolateCake(value)).toBe(text);
   });
 };
 
-const createError = error => number => {
-  test(`throws error from ${number}`, () => {
+const createError = (error: string) => (value: any): void => {
+  test(`throws error from ${value}`, () => {
     const test = () =>
       chocolateCake(
         // Lie to typescript (that these arguments are numbers) in order to allow
         // incorrect types to pass through into our library scope.
-        number as number
+        value as number
       );
     expect(test).toThrowError(error);
   });
 };
 
 describe("single digit values", () => {
-  [
+  ([
     [0, "Zero"],
     [1, "One"],
     [2, "Two"],
@@ -30,20 +33,20 @@ describe("single digit values", () => {
     [7, "Seven"],
     [8, "Eight"],
     [9, "Nine"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("outlier values", () => {
-  [
+  ([
     [10, "Ten"],
     [11, "Eleven"],
     [12, "Twelve"]
     //
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("teen values", () => {
-  [
+  ([
     [13, "Thirteen"],
     [14, "Fourteen"],
     [15, "Fifteen"],
@@ -51,11 +54,11 @@ describe("teen values", () => {
     [17, "Seventeen"],
     [18, "Eighteen"],
     [19, "Nineteen"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("standard double digit values", () => {
-  [
+  ([
     [20, "Twenty"],
     [29, "Twenty nine"],
     [30, "Thirty"],
@@ -72,11 +75,11 @@ describe("standard double digit values", () => {
     [89, "Eighty nine"],
     [90, "Ninety"],
     [99, "Ninety nine"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("hundred suffix values", () => {
-  [
+  ([
     [100, "One hundred"],
     [101, "One hundred and one"],
     [111, "One hundred and eleven"],
@@ -112,11 +115,11 @@ describe("hundred suffix values", () => {
     [900, "Nine hundred"],
     [909, "Nine hundred and nine"],
     [999, "Nine hundred and ninety nine"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("thousand suffix values", () => {
-  [
+  ([
     [1000, "One thousand"],
     [10000, "Ten thousand"],
     [100000, "One hundred thousand"],
@@ -224,34 +227,34 @@ describe("thousand suffix values", () => {
     [9900, "Nine thousand, nine hundred"],
     [99900, "Ninety nine thousand, nine hundred"],
     [999900, "Nine hundred and ninety nine thousand, nine hundred"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("million suffix values", () => {
   // prettier-ignore
-  [
+  ([
     [1234567, "One million, two hundred and thirty four thousand, five hundred and sixty seven"],
     [12345678, "Twelve million, three hundred and forty five thousand, six hundred and seventy eight"],
     [123456789, "One hundred and twenty three million, four hundred and fifty six thousand, seven hundred and eighty nine"]
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("billion suffix values", () => {
   // prettier-ignore
-  [
+  ([
     [1234567890, "One billion, two hundred and thirty four million, five hundred and sixty seven thousand, eight hundred and ninety"],
     [12345678901, "Twelve billion, three hundred and forty five million, six hundred and seventy eight thousand, nine hundred and one"],
     [123456789012, "One hundred and twenty three billion, four hundred and fifty six million, seven hundred and eighty nine thousand and twelve"],
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("trillion suffix values", () => {
   // prettier-ignore
-  [
+  ([
     [1234567890123, "One trillion, two hundred and thirty four billion, five hundred and sixty seven million, eight hundred and ninety thousand, one hundred and twenty three"],
     [12345678901234, "Twelve trillion, three hundred and forty five billion, six hundred and seventy eight million, nine hundred and one thousand, two hundred and thirty four"],
     [123456789012345, "One hundred and twenty three trillion, four hundred and fifty six billion, seven hundred and eighty nine million, twelve thousand, three hundred and forty five"],
-  ].forEach(createTest);
+  ] as TestItems).forEach(createTest);
 });
 
 describe("is not a number validation", () => {

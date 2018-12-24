@@ -15,7 +15,11 @@ interface ReduceValue {
   append(value: number): string;
 }
 
-const singleMap = {
+interface GenericMap {
+  [key: number]: string;
+}
+
+const singleMap: GenericMap = {
   0: "zero",
   1: "one",
   2: "two",
@@ -28,7 +32,7 @@ const singleMap = {
   9: "nine"
 };
 
-const outlierMap = {
+const outlierMap: GenericMap = {
   // ten eleven and twelve share no affiliation to a `${prefix}${suffix}` style
   // system.
   10: "ten",
@@ -41,7 +45,7 @@ const outlierMap = {
   14: "fourteen"
 };
 
-const staticMap = {
+const staticMap: GenericMap = {
   ...singleMap,
   ...outlierMap
 };
@@ -51,7 +55,7 @@ const staticMap = {
 // Example:
 // 13 = "thir" + "teen"
 // 30 = "thir" + "ty"
-const multiMap = {
+const multiMap: GenericMap = {
   ...singleMap,
   2: "twen",
   3: "thir",

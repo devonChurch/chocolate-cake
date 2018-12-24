@@ -62,6 +62,3 @@ typings/
 
 # VScode
 .vscode/
-
-# Misc
-/debug.*

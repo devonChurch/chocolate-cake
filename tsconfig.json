@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
+    "outDir": "./dist",
     "target": "es5",
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "declaration": true,
+    "strict": true
   },
   "include": ["./src/**/*"]
 }
