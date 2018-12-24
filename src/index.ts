@@ -250,8 +250,23 @@ const recurseValue = (value: number): string => {
   return text;
 };
 
+const validateInput = (value: number): boolean => {
+  const isNotNumber = typeof value !== "number" || isNaN(value);
+  const notNumberError = "supplied value is not a number";
+  if (isNotNumber) throw new Error(notNumberError);
+
+  const isTooBig = value > 999999999999999;
+  const tooBigError =
+    "supplied value is too large for javascript to parse accurately";
+  if (isTooBig) throw new Error(tooBigError);
+
+  return !(isNotNumber || isTooBig);
+};
+
 const chocolateCake = (value: number): string => {
-  const text = value ? recurseValue(value) : staticMap[0];
+  const isValid = validateInput(value);
+  const isZero = value == 0;
+  const text = !isValid || isZero ? staticMap[0] : recurseValue(value);
 
   return sanitiseText(text);
 };

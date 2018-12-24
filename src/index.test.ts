@@ -6,6 +6,18 @@ const createTest = ([number, text]) => {
   });
 };
 
+const createError = error => number => {
+  test(`throws error from ${number}`, () => {
+    const test = () =>
+      chocolateCake(
+        // Lie to typescript (that these arguments are numbers) in order to allow
+        // incorrect types to pass through into our library scope.
+        number as number
+      );
+    expect(test).toThrowError(error);
+  });
+};
+
 describe("single digit values", () => {
   [
     [0, "Zero"],
@@ -22,11 +34,11 @@ describe("single digit values", () => {
 });
 
 describe("outlier values", () => {
-  // prettier-ignore
   [
     [10, "Ten"],
     [11, "Eleven"],
     [12, "Twelve"]
+    //
   ].forEach(createTest);
 });
 
@@ -242,20 +254,17 @@ describe("trillion suffix values", () => {
   ].forEach(createTest);
 });
 
-describe("quadrillion suffix values", () => {
-  // prettier-ignore
+describe("is not a number validation", () => {
   [
-    [1234567890123456, "One quadrillion, two hundred and thirty four trillion, five hundred and sixty seven billion, eight hundred and ninety million, one hundred and twenty three thousand, four hundred and fifty six"],
-    [12345678901234567, "Twelve quadrillion, three hundred and forty five trillion, six hundred and seventy eight billion, nine hundred and one million, two hundred and thirty four thousand, five hundred and sixty eight"],
-    [123456789012345678, "One hundred and twenty three quadrillion, four hundred and fifty six trillion, seven hundred and eighty nine billion, twelve million, three hundred and forty five thousand, six hundred and eighty"],
-  ].forEach(createTest);
+    "123",
+    false,
+    () => 123,
+    0 / 0 //
+  ].forEach(createError("is not a number"));
 });
 
-describe("quintillion suffix values", () => {
-  // prettier-ignore
+describe("is too large validation", () => {
   [
-    [1234567890123456789, "One quintillion, two hundred and thirty four quadrillion, five hundred and sixty seven trillion, eight hundred and ninety billion, one hundred and twenty three million, four hundred and fifty six thousand, seven hundred and sixty eight"],
-    [12345678901234567890, "Twelve quintillion, three hundred and forty five quadrillion, six hundred and seventy eight trillion, nine hundred and one billion, two hundred and thirty four million, five hundred and sixty seven thousand, one hundred and sixty eight"],
-    [123456789012345678901, "One hundred and twenty three quintillion, four hundred and fifty six quadrillion, seven hundred and eighty nine trillion, twelve billion, three hundred and forty five million, six hundred and eighty three thousand, nine hundred and sixty eight"],
-  ].forEach(createTest);
+    1000000000000000 //
+  ].forEach(createError("is too large"));
 });
