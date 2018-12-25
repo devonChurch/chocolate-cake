@@ -1,4 +1,4 @@
-interface ReduceValue {
+interface IntReduceValue {
   // The current accumulated text from parsing the supplied numerical value thus
   // far.
   text: string;
@@ -15,11 +15,11 @@ interface ReduceValue {
   append(value: number): string;
 }
 
-interface GenericMap {
+interface IntGenericMap {
   [key: number]: string;
 }
 
-const singleMap: GenericMap = {
+const singleMap: IntGenericMap = {
   0: "zero",
   1: "one",
   2: "two",
@@ -32,7 +32,7 @@ const singleMap: GenericMap = {
   9: "nine"
 };
 
-const outlierMap: GenericMap = {
+const outlierMap: IntGenericMap = {
   // ten eleven and twelve share no affiliation to a `${prefix}${suffix}` style
   // system.
   10: "ten",
@@ -45,7 +45,7 @@ const outlierMap: GenericMap = {
   14: "fourteen"
 };
 
-const staticMap: GenericMap = {
+const staticMap: IntGenericMap = {
   ...singleMap,
   ...outlierMap
 };
@@ -55,7 +55,7 @@ const staticMap: GenericMap = {
 // Example:
 // 13 = "thir" + "teen"
 // 30 = "thir" + "ty"
-const multiMap: GenericMap = {
+const multiMap: IntGenericMap = {
   ...singleMap,
   2: "twen",
   3: "thir",
@@ -73,7 +73,9 @@ const createDoubleAndUnder = (value: number): string => {
   // If we can simply extract the text from the static map then we can return and
   // exit early.
   const staticText = staticMap[value];
-  if (staticText) return staticText;
+  if (staticText) {
+    return staticText;
+  }
 
   // Keys.
   // -----
@@ -95,7 +97,9 @@ const createDoubleAndUnder = (value: number): string => {
   // If a number is 19 then we would prefix with the suffix "nine" followed by a
   // "teen" to make "nineteen".
   const isTeen = prefixKey === 1;
-  if (isTeen) return `${multiMap[suffixKey]}teen`;
+  if (isTeen) {
+    return `${multiMap[suffixKey]}teen`;
+  }
 
   // Standard.
   // ---------
@@ -158,15 +162,22 @@ const incrementCheck = Object.entries(incrementMap).sort(
 
 // Distill the remaining numerical value closer to 0 while building up the text
 // representation to emulate the value extracted thus far.
-const reduceValue = ({ text, remaining, increment, append }: ReduceValue) => {
+const reduceValue = ({
+  text,
+  remaining,
+  increment,
+  append
+}: IntReduceValue) => {
   // Stop recursing if we have finally reached zero for the remaining number.
   const isZero = remaining === 0;
-  if (isZero) return { text, remaining: 0 };
+  if (isZero) {
+    return { text, remaining: 0 };
+  }
 
   // If the remaining number is less than 99 (on the 10 increment) then we can
   // derive the last text representation without recursing further.
   const isFinalRecurse = increment === 10;
-  if (isFinalRecurse)
+  if (isFinalRecurse) {
     // Note: we add "and" to the text as its the final value in the current sequence.
     // Example:
     // one thousand and one
@@ -175,6 +186,7 @@ const reduceValue = ({ text, remaining, increment, append }: ReduceValue) => {
     // five and seven thousand, four hundred and two
     //     ---                              ---
     return { text: `${text} and ${append(remaining)}`, remaining: 0 };
+  }
 
   // If the remaining number is too small for the current increment then skip the
   // current increment and move on. This can happen if there are no relevant value
@@ -184,7 +196,9 @@ const reduceValue = ({ text, remaining, increment, append }: ReduceValue) => {
   // We completely skip the "hundreds" increment as its not relevant for this
   // number.
   const isTooSmall = increment > remaining;
-  if (isTooSmall) return { text, remaining };
+  if (isTooSmall) {
+    return { text, remaining };
+  }
 
   // If there are no matches thus far then we get the current values associated
   // to the increment and extract the remaining values for then next recursive
@@ -198,8 +212,9 @@ const reduceValue = ({ text, remaining, increment, append }: ReduceValue) => {
   // If there are no remaining values then we ensure that the recursion stops in
   // the next "isZero" check.
   const hasNext = remainingNext > 0;
-  if (!hasNext)
+  if (!hasNext) {
     return { text: `${text} ${append(remainingNow)}`, remaining: 0 };
+  }
 
   // Generate the current text representation for this increment and return the
   // remaining values so that we can continue the recursion sequence in the next
@@ -245,9 +260,9 @@ const recurseValue = (value: number): string => {
     (acc, [increment, append]) =>
       reduceValue({
         ...acc,
-        increment: Number(increment),
-        append
-      } as ReduceValue),
+        append,
+        increment: Number(increment)
+      } as IntReduceValue),
     shell
   );
 
@@ -257,19 +272,23 @@ const recurseValue = (value: number): string => {
 const validateInput = (value: number): boolean => {
   const isNotNumber = typeof value !== "number" || isNaN(value);
   const notNumberError = "supplied value is not a number";
-  if (isNotNumber) throw new Error(notNumberError);
+  if (isNotNumber) {
+    throw new Error(notNumberError);
+  }
 
   const isTooBig = value > 999999999999999;
   const tooBigError =
     "supplied value is too large for javascript to parse accurately";
-  if (isTooBig) throw new Error(tooBigError);
+  if (isTooBig) {
+    throw new Error(tooBigError);
+  }
 
   return !(isNotNumber || isTooBig);
 };
 
 const chocolateCake = (value: number): string => {
   const isValid = validateInput(value);
-  const isZero = value == 0;
+  const isZero = value === 0;
   const text = !isValid || isZero ? staticMap[0] : recurseValue(value);
 
   return sanitiseText(text);
