@@ -2,7 +2,7 @@
   "name": "chocolate-cake",
   "version": "0.0.0",
   "description": "A helper for converting Numbers into their String representation",
-  "main": "index.js",
+  "main": "./dist/bundle.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
