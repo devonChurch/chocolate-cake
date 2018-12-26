@@ -1,13 +1,13 @@
 {
   "name": "chocolate-cake",
   "version": "1.0.0",
-  "description": "A helper for converting Numbers into their String representation",
+  "description": "A utility that converts standard Javascript numbers into their spoken word string based representations",
   "main": "./dist/bundle.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
     "start": "NODE_ENV=development webpack --watch",
-    "build": "NODE_ENV=production webpack -p",
+    "build": "npm run test && NODE_ENV=production webpack -p",
     "debug": "node --inspect=5000 ./debug.js"
   },
   "repository": {

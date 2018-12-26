@@ -226,8 +226,8 @@ const reduceValue = ({
 // run into anomalies due to an isolation from what next/previous increments in
 // the recursion sequence are doing. In that regard this is a final check to ensure
 // that the structure of the numerical text is consistent with the required format.
-const sanitiseText = (text: string): string => {
-  const replacedText = text
+const sanitiseText = (text: string): string =>
+  text
     // Should start flush with text (no white space).
     .replace(/^\s*/g, "")
     // Should not start with "and " (can happen when the number is one or two
@@ -241,9 +241,11 @@ const sanitiseText = (text: string): string => {
     // White space inside the text representation should only be once space in
     // size.
     .replace(/\s\s(\s*)?/g, " ");
-  // Capitalise the first letter in the string sequence.
-  const capital = replacedText.slice(0, 1).toUpperCase();
-  const remaining = replacedText.slice(1);
+
+// Capitalise the first letter in the string sequence.
+const capitaliseText = (text: string): string => {
+  const capital = text.slice(0, 1).toUpperCase();
+  const remaining = text.slice(1);
 
   return `${capital}${remaining}`;
 };
@@ -289,9 +291,13 @@ const validateInput = (value: number): boolean => {
 const chocolateCake = (value: number): string => {
   const isValid = validateInput(value);
   const isZero = value === 0;
-  const text = !isValid || isZero ? staticMap[0] : recurseValue(value);
+  const negative = value < 0 ? "Negative " : "";
+  const wholeNumber = Math.abs(value);
+  const wholeText =
+    !isValid || isZero ? staticMap[0] : recurseValue(wholeNumber);
+  const conjoinedText = `${negative}${sanitiseText(wholeText)}`;
 
-  return sanitiseText(text);
+  return capitaliseText(conjoinedText);
 };
 
 export default chocolateCake;

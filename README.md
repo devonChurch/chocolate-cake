@@ -14,6 +14,8 @@ Creating _friendlier_ and more intuitive user interfaces is increasingly critica
 
 ## Demo 😎
 
+Try out the [CodePen demo](https://codepen.io/DevonChurch/pen/wRemEe?editors=0010) or easily experiment inside your own application with the [Installation](https://github.com/devonChurch/chocolate-cake#installation-) and [Usage](https://github.com/devonChurch/chocolate-cake#usage-) instructions below.
+
 ![chocolate-cake-standard](https://user-images.githubusercontent.com/15273233/50428372-1c4c2f80-091c-11e9-96fe-f0efb172d723.gif)
 
 ## Installation 🤖
