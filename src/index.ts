@@ -147,7 +147,7 @@ const incrementMap = [
   // }
   (acc, [zeros, suffix]) => ({
     ...acc,
-    [createIncrementKey(Number(zeros))]: (value: number): string =>
+    [createIncrementKey(+zeros)]: (value: number): string =>
       `${conditionallyRecurse(value)}${suffix}`
   }),
   {}
@@ -263,12 +263,39 @@ const recurseValue = (value: number): string => {
       reduceValue({
         ...acc,
         append,
-        increment: Number(increment)
+        increment: +increment
       } as IntReduceValue),
     shell
   );
 
   return text;
+};
+
+// convert each decimal place value into an individual item in an array.
+// Note: We are doing this via string modification as Javascript is very poor at
+// rounding decimal places as a result of math. In that regard we take the
+// supplied number in its entirety and manually bin everything that is not decimal
+// related before converting into an array.
+const convertDeciamlsToArray = (value: number): number[] => {
+  const text = `${value}`.includes(".") ? `${value}` : "";
+
+  return text
+    .replace(/(.*\.)/, "")
+    .split("")
+    .map(key => +key);
+};
+
+// Convert each individual decimal number into a comma separated string of static
+// string values.
+// Example:
+// 1.234 = " point two, three, four"
+const convertToDecimal = (value: number): string => {
+  const decimalNumbers = convertDeciamlsToArray(value);
+  if (!decimalNumbers.length) {
+    return "";
+  }
+
+  return ` point ${decimalNumbers.map(key => staticMap[key]).join(", ")}`;
 };
 
 const validateInput = (value: number): boolean => {
@@ -291,11 +318,14 @@ const validateInput = (value: number): boolean => {
 const chocolateCake = (value: number): string => {
   const isValid = validateInput(value);
   const isZero = value === 0;
-  const negative = value < 0 ? "Negative " : "";
-  const wholeNumber = Math.abs(value);
+  const negativeText = value < 0 ? "Negative " : "";
+  const positiveNumber = Math.abs(value);
+  const wholeNumber = Math.floor(positiveNumber);
   const wholeText =
     !isValid || isZero ? staticMap[0] : recurseValue(wholeNumber);
-  const conjoinedText = `${negative}${sanitiseText(wholeText)}`;
+  const decimalText = convertToDecimal(positiveNumber);
+  const sanitisedText = sanitiseText(wholeText);
+  const conjoinedText = `${negativeText}${sanitisedText}${decimalText}`;
 
   return capitaliseText(conjoinedText);
 };

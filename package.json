@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "start": "NODE_ENV=development webpack --watch",
     "build": "npm run test && NODE_ENV=production webpack -p",
-    "debug": "node --inspect=5000 ./debug.js"
+    "debug": "node --inspect-brk=5000 ./debug.js"
   },
   "repository": {
     "type": "git",

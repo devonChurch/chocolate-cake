@@ -280,12 +280,12 @@ describe("negative values", () => {
   ] as TestItems).forEach(createTest);
 });
 
-describe.skip("decimal values", () => {
+describe("decimal values", () => {
   ([
-    [1.0, "One point zero"],
+    [1.0, "One"],
     [1.01, "One point zero, one"],
     [1.234, "One point two, three, four"],
     [12.34, "Twelve point three, four"],
-    [1234, "One hundred and twenty three point four"]
+    [123.4, "One hundred and twenty three point four"]
   ] as TestItems).forEach(createTest);
 });

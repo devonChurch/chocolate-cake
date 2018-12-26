@@ -40,11 +40,33 @@ Simply pass in a `number` and get back the respective `string`.
 chocolateCake(1036); // One thousand and thirty six
 ```
 
+### Negative Values 🎊
+
+In release `v1.1.0` we have added support for negative values.
+
+![chocolate-cake-negative](https://user-images.githubusercontent.com/15273233/50438255-08232500-0952-11e9-8b6b-0954c46cf1ed.gif)
+
+```javascript
+chocolateCake(-3210); // Negative three thousand, two hundred and ten
+```
+
+### Decimal Values 🎉
+
+In release `v1.1.0` we have added support for decimal values.
+
+![chocolate-cake-decimal](https://user-images.githubusercontent.com/15273233/50438254-078a8e80-0952-11e9-8238-6bdf9e164a1e.gif)
+
+```javascript
+chocolateCake(12.34); // Twelve point three, four
+```
+
 ### Typescript 👍
 
 This utility also supports Typescript
 
 ![chocolate-cake-typescript](https://user-images.githubusercontent.com/15273233/50428371-1c4c2f80-091c-11e9-942f-99943d0148cb.png)
+
+### Limitations 🎛 🎚
 
 This utility can convert values up-to-the _trillions_ increment.
 
