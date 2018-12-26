@@ -1,5 +1,9 @@
 # Chocolate Cake 🍫 🎂 🍰 🍨 😋 😵
 
+[![npm version](https://badge.fury.io/js/chocolate-cake.svg)](https://badge.fury.io/js/chocolate-cake)
+
+[![typescript](https://user-images.githubusercontent.com/15273233/40872275-a61d4660-669f-11e8-8edf-860f1947759f.png)](https://www.typescriptlang.org/) [![code style prettier](https://img.shields.io/badge/code_style-prettier-FF69A4.svg)](https://prettier.io/) [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+
 ## What 🤔
 
 A utility that converts standard Javascript `numbers` into their spoken word `string` based representations.
