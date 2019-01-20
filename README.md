@@ -27,7 +27,7 @@ Try out the [CodePen demo](https://codepen.io/DevonChurch/pen/wRemEe?editors=001
 Install the module from **NPM** .
 
 ```
-npm install --save fish-tacos
+npm install --save chocolate-cake
 ```
 
 Import the module into your project.

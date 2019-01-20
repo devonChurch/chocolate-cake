@@ -1,6 +1,6 @@
 {
   "name": "chocolate-cake",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A utility that converts standard Javascript numbers into their spoken word string based representations",
   "keywords": [
     "number",
