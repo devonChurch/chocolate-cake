@@ -2,6 +2,19 @@
   "name": "chocolate-cake",
   "version": "1.1.1",
   "description": "A utility that converts standard Javascript numbers into their spoken word string based representations",
+  "keywords": [
+    "number",
+    "string",
+    "text",
+    "written",
+    "word",
+    "words",
+    "convert",
+    "utility",
+    "helper",
+    "human",
+    "spoken"
+  ],
   "main": "./dist/bundle.js",
   "scripts": {
     "test": "jest",
