@@ -29,7 +29,7 @@ const singleMap: IntGenericMap = {
   6: "six",
   7: "seven",
   8: "eight",
-  9: "nine"
+  9: "nine",
 };
 
 const outlierMap: IntGenericMap = {
@@ -42,12 +42,12 @@ const outlierMap: IntGenericMap = {
   // variants e.g. "forty" do not have a "u". Because of this we cannot use the
   // `${prefix}${suffix}` style system that works with something like "thirteen"
   // and "thirty".
-  14: "fourteen"
+  14: "fourteen",
 };
 
 const staticMap: IntGenericMap = {
   ...singleMap,
-  ...outlierMap
+  ...outlierMap,
 };
 
 // The prefix for multi digit values (that are not accounted for in the outliers
@@ -61,7 +61,7 @@ const multiMap: IntGenericMap = {
   3: "thir",
   4: "for",
   5: "fif",
-  8: "eigh"
+  8: "eigh",
 };
 
 // For numbers 99 and under we no longer need to recurse through a to generate a
@@ -134,7 +134,7 @@ const incrementMap = [
   [9, " billion,"],
   [12, " trillion,"],
   [15, " quadrillion,"],
-  [18, " quintillion,"]
+  [18, " quintillion,"],
 ].reduce(
   // Turn this configuration into a map of key/value pairs to build a recursive
   // increment system.
@@ -148,7 +148,7 @@ const incrementMap = [
   (acc, [zeros, suffix]) => ({
     ...acc,
     [createIncrementKey(+zeros)]: (value: number): string =>
-      `${conditionallyRecurse(value)}${suffix}`
+      `${conditionallyRecurse(value)}${suffix}`,
   }),
   {}
 );
@@ -156,9 +156,9 @@ const incrementMap = [
 // Order the incrementMap into an array from largest to smallest increment so
 // that we can recursively iterate through and build up a text representation
 // for each major increment milestone (millions, thousands, hundreds).
-const incrementCheck = Object.entries(incrementMap).sort(
-  ([incrementA], [incrementB]) => (incrementA < incrementB ? 1 : -1)
-);
+const incrementCheck = Object.entries(
+  incrementMap
+).sort(([incrementA], [incrementB]) => (incrementA < incrementB ? 1 : -1));
 
 // Distill the remaining numerical value closer to 0 while building up the text
 // representation to emulate the value extracted thus far.
@@ -166,7 +166,7 @@ const reduceValue = ({
   text,
   remaining,
   increment,
-  append
+  append,
 }: IntReduceValue) => {
   // Stop recursing if we have finally reached zero for the remaining number.
   const isZero = remaining === 0;
@@ -263,7 +263,7 @@ const recurseValue = (value: number): string => {
       reduceValue({
         ...acc,
         append,
-        increment: +increment
+        increment: +increment,
       } as IntReduceValue),
     shell
   );
@@ -282,7 +282,7 @@ const convertDeciamlsToArray = (value: number): number[] => {
   return text
     .replace(/(.*\.)/, "")
     .split("")
-    .map(key => +key);
+    .map((key) => +key);
 };
 
 // Convert each individual decimal number into a comma separated string of static
@@ -295,7 +295,7 @@ const convertToDecimal = (value: number): string => {
     return "";
   }
 
-  return ` point ${decimalNumbers.map(key => staticMap[key]).join(", ")}`;
+  return ` point ${decimalNumbers.map((key) => staticMap[key]).join(", ")}`;
 };
 
 const validateInput = (value: number): boolean => {
@@ -316,6 +316,8 @@ const validateInput = (value: number): boolean => {
 };
 
 const chocolateCake = (value: number): string => {
+  console.log("SSH test...");
+
   const isValid = validateInput(value);
   const isZero = value === 0;
   const negativeText = value < 0 ? "Negative " : "";
